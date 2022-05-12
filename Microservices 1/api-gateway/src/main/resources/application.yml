@@ -1,0 +1,21 @@
+#Api gateway will also be registed at eureka server.
+
+server:
+  port: 8999
+  
+spring:
+  application:
+    name: api-gateway
+    
+#All microservices which are registered in eureka server are routed here in api gateway that client uses.    
+  cloud:    gateway:      routes:      - id: user-service
+        uri: lb://user-service
+        predicates:        - Path=/user/**
+#Client will call from this api gateway url to user microservices:- http://localhost:8999/user/110        
+      - id: contact-service   
+        uri: lb://contact-service
+        predicates:
+        - Path=/contact/**
+#Client will call from this api gateway url to contact microservices:- http://localhost:8999/contact/user/110    
+eureka:  instance:    hostname: localhost
+      
