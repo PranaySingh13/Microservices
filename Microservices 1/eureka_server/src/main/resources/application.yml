@@ -1,0 +1,8 @@
+server:
+  port: 8761
+  
+#To clarify, the two properties above are used inside the eureka server, not the client. This prevents the server from registering itself.     
+eureka:  client:    register-with-eureka: false
+    fetch-registry: false
+  server:    wait-time-in-ms-when-sync-empty: 0
+  instance:    hostname: localhost    
